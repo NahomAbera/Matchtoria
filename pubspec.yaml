@@ -69,6 +69,12 @@ flutter:
     - assets/cardImage7.jpg
     - assets/cardImage8.jpg
     - assets/cardBackImage.jpg
+    - assets/congratulations_Icon.png
+  fonts:
+    - family: Garamond
+      fonts:
+        - asset: fonts/EBGaramond-Regular.ttf
+        - asset: fonts/EBGaramond-Bold.ttf
 
 
   # The following line ensures that the Material Icons font is

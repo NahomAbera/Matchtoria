@@ -109,8 +109,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
         title: Text(
-          'Matchtoria',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+          '                Matchtoria',
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Garamond'),
         ),
       ),
       body: Stack(
@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               ? Container()
               : Text(
                   'Matched Cards: ${cardModel.matches} out of 16',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Garamond'),
                 ),
         ),
       ),
@@ -166,46 +166,48 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   }
 
   Widget _buildCongratsWidget() {
-    return Container(
-      color: Colors.green.shade900.withOpacity(0.9),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RotationTransition(
-              turns: Tween(begin: 0.0, end: 0.125).animate(
-                CurvedAnimation(
-                  parent: animationController,
-                  curve: Curves.bounceInOut,
-                ),
-              ),
-              child: Text(
-                'Congrats, You\'ve Won!',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+  return Container(
+    color: Colors.green.shade900.withOpacity(0.9),
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset(0.0, 0.0),
+              end: Offset(0.0, 0.0),
+            ).animate(CurvedAnimation(
+              parent: animationController,
+              curve: Curves.easeInOut,
+            )),
+            child: Image.asset(
+              'assets/congratulations_Icon.png',
+              height: 300,
+              width: 300,
+            ),
+          ),
+          SizedBox(height: 30, width: 50),
+          ElevatedButton(
+            onPressed: () {
+              Provider.of<CardModel>(context, listen: false).resetGame();
+              setState(() {
+                showCongrats = false;
+              });
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.black,
+            ),
+            child: Text(
+              'Press to Play Again',
+              style: TextStyle(color: Colors.green.shade900, fontSize: 22, fontFamily: 'Garamond'),
               ),
             ),
-            SizedBox(height: 10),
-            // TextButton(
-            //   onPressed: () {
-            //     Provider.of<CardModel>(context, listen: false).resetGame();
-            //     setState(() {
-            //       showCongrats = false;
-            //     });
-            //   },
-            //   child: Text(
-            //     'Press to Play Again',
-            //     style: TextStyle(color: Colors.black, fontSize: 22),
-            //   ),
-            // ),
           ],
         ),
       ),
     );
   }
+
 }
 
 class CardWidget extends StatelessWidget {
@@ -234,7 +236,7 @@ class CardWidget extends StatelessWidget {
                   width: 80,
                 )
               : Image.asset(
-                  'assets/cardBackImage.jpg', 
+                  'assets/cardBackImage.jpg',
                   height: 80,
                   width: 80,
                   fit: BoxFit.cover,
