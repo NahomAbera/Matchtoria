@@ -40,12 +40,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: "^0.13.1"
 
-flutter_icons:
-  andriod: true
+flutter_launcher_icons:
+  android: "launcher_icon"
   ios: true
-  image_path: "assets/cardBackImage.jpg"
+  image_path: "assets/appIcon.png"
+  min_sdk_android: 21  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -70,6 +71,8 @@ flutter:
     - assets/cardImage8.jpg
     - assets/cardBackImage.jpg
     - assets/congratulations_Icon.png
+    - assets/appIcon.png
+    
   fonts:
     - family: Garamond
       fonts:
